@@ -1,0 +1,60 @@
+<div class='jumbotron'>
+
+	<img class='head-img img-responsive center-block' src='/assets/img/burger.png'>
+
+	<h1 class='text-center' id='header-text'>Burgers!</h1>
+
+</div>
+
+
+
+<div class='col-md-6 text-center'>
+
+	<h2>Burgers Ready to be Eaten!</h2>
+
+	<ul>
+		{{#each burger}}
+			{{#unless this.devoured}}
+				<div class='burger-div'>
+					<h4 class='burger-name'>{{this.id}}. {{this.burger_name}}</h4>
+
+					<form class='inline-form' action="/{{this.id}}?_method=PUT" method="POST">
+						<input type="hidden" name="devoured" value="true">
+						<button type="submit"  class='devour-button btn btn-info'>Devour it!</button>
+					</form>
+
+				</div>
+			{{/unless}}
+		{{/each}}
+	</ul>
+
+</div>
+
+<div class='col-md-6 text-center'>
+	<h2>Devoured Burgers!</h2>
+
+	<ul>
+		{{#each burger}}
+			{{#if this.devoured}}
+				<div class='burger-div-devoured'>
+					<h4 class='burger-name devoured'>{{this.id}}. {{this.burger_name}}</h4>
+				</div>
+			{{/if}}
+		{{/each}}
+	</ul>
+</div>
+
+<div class='col-md-12 text-center'>
+	<h2>Add a Burger</h2>
+	<form class="create-update-form" action="/" method="POST">
+
+		<div class="form-group">
+			<input class='name-input' type="text" id="ba" name="burger_name">
+		</div>
+
+		<button type="submit" class='btn btn-primary add-btn'>Submit</button>
+
+	</form>
+</div>
+
+<div class='col-md-12 footer'></div
